@@ -13,7 +13,7 @@ formElement.addEventListener('submit', function (event) {
     //log out he event object which is generated when the form is submitted
     console.log(event);
 
-    alert(`You have submitted this form!`);
+    // alert(`You have submitted this form!`);
     //query the DOM for the input element and check whether its empty
     const inputElement = document.getElementById('toDoItem');
     console.log(inputElement);
@@ -68,6 +68,30 @@ formElement.addEventListener('submit', function (event) {
 
 //in order to attach a click event listener to the li's which do not exist on th epage yet, we can use :
 //EVENT PROPAGATION to DELEGATE the click event to the ul!
+const ul = document.querySelector('ul');
+
+ul.addEventListener('click', function (event) {
+    //The this keyword represents the object that owns the code wghich is currently running
+    //so this will give us back the ul consistently which is not what we want 
+    //console.log(this);
+
+    //log out the event object
+    // console.log(event);
+
+    //as long as we clicked on the icon, then:
+
+    if (event.target.localName === 'i') {
+
+        console.log('clickety clack');
+
+        //this will log the specific nested element within the ul that the click is occuring on
+        console.log(event.target);
+
+        //toggle between checked/unchecked (AKA done vs not done) on the target element
+        event.target.classList.toggle('fa-square-check');
+        event.target.classList.toggle('fa-square');
+    }
+});
 
 //BONUS LEVEL
 //add a reset button which clears out all of the TO DOS
